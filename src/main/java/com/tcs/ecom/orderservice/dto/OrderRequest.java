@@ -1,7 +1,7 @@
 package com.tcs.ecom.orderservice.dto;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import java.util.List;
 
 public class OrderRequest {
 
@@ -9,8 +9,7 @@ public class OrderRequest {
 	private Long userId;
 
 	@NotNull
-	@Positive
-	private Double amount;
+	private List<OrderItemRequest> items;
 
 	public Long getUserId() {
 		return userId;
@@ -20,12 +19,12 @@ public class OrderRequest {
 		this.userId = userId;
 	}
 
-	public Double getAmount() {
-		return amount;
+	public List<OrderItemRequest> getItems() {
+		return items;
 	}
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setItems(List<OrderItemRequest> items) {
+		this.items = items;
 	}
 
 }

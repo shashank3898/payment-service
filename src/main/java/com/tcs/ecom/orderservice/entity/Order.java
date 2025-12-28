@@ -1,7 +1,19 @@
 package com.tcs.ecom.orderservice.entity;
 
+import java.util.List;
+
 import com.tcs.ecom.orderservice.dto.OrderStatus;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "orders")
@@ -18,6 +30,9 @@ public class Order {
 	private OrderStatus status;
 
 	private String paymentId;
+
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<OrderItem> items;
 
 	public Long getOrderId() {
 		return orderId;
@@ -57,6 +72,14 @@ public class Order {
 
 	public void setPaymentId(String paymentId) {
 		this.paymentId = paymentId;
+	}
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 
 }
